@@ -21,16 +21,22 @@
 	?>
     <h1>Thank You</h1>
     <p>Here is the information you have submitted:</p>
+	<?php 
+		$hours =  $_POST["hrsWorked"];
+		$mins =  $_POST["minsWorked"];
+		$hours = $hours * 60;
+		$hours = $hours + $mins;
+	?>
     <ol>
-        <li><em>Employee ID:</em> <?php echo $_POST["empID"]?></li>
-        <li><em>Project ID:</em> <?php echo $_POST["select"]?></li>
-		<li><em>Time Worked: </em> <?php echo $_POST["timeWorked"]?></li>
+        <li><em>Employee ID:</em> <?php echo $_POST["selectEmp"]?></li>
+        <li><em>Project ID:</em> <?php echo $_POST["selectProj"]?></li>
+		<li><em>Time Worked: </em> <?php echo $hours;?></li>
 		<li><em>Work Date: </em> <?php echo $_POST["workDate"]?></li>
 	<?php
 		
-	$empID = mysqli_real_escape_string($link, $_REQUEST['empID']);
-	$projID = mysqli_real_escape_string($link, $_REQUEST['select']);
-	$timeWorked = mysqli_real_escape_string($link, $_REQUEST['timeWorked']);
+	$empID = mysqli_real_escape_string($link, $_REQUEST['selectEmp']);
+	$projID = mysqli_real_escape_string($link, $_REQUEST['selectProj']);
+	$timeWorked = mysqli_real_escape_string($link, $hours);
 	$workDate = mysqli_real_escape_string($link, $_REQUEST['workDate']);
 	 
 	// attempt insert query execution

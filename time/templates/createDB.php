@@ -47,11 +47,12 @@ if(mysqli_query($link, $sql)){
 
 //Create Employee/Project Table ---- Need query for total time
 $sql = "CREATE TABLE IF NOT EXISTS timeTrackingDB.empProjAssignments (
-  empID VARCHAR(5) NOT NULL,
-  projID VARCHAR(5) NOT NULL, 
+  empProjID INT NOT NULL AUTO_INCREMENT,
+  empID VARCHAR(5),
+  projID VARCHAR(5), 
   timeWorked INT,
   workDate DATE,
-  PRIMARY KEY (empID, projID))";
+  PRIMARY KEY (empProjID))";
 if(mysqli_query($link, $sql)){
     //echo "Table empProjAssignments created successfully<br />";
 } else{

@@ -13,20 +13,20 @@
 <body>
 <?php
 include("createDB.php");;
-	echo "<H2>Date/Time</H2>";
+	echo "<H2 style="."color: white;".">Date/Time</H2>";
 	echo "<H3><p>".date('Y-m-d H:i:s')."</p></H3>";
 ?>
 <div style="margin: 100px; text-align: center">
 	<form action="clockIn-process-form.php" method="post" class="well" style="background-color: #002060;">
-	<h1 style="padding-bottom: 20px; color: white">Clock-in</h1>
+	<h1 style="padding-bottom: 20px; color: white;">Clock-in</h1>
         <p>
-            <label for="inputEmpID" style="color: white">Employee: <sup>*</sup></label>
+		<label for="inputEmpID" style="color: white;">Employee: <sup>*</sup></label>
 		<?php
 		//query
 		
 		$sql=mysqli_query($link, "SELECT empID,empName FROM timeTrackingDB.employee");
 		if(mysqli_num_rows($sql)){
-			$select= '<select name="select">';
+			$select= '<select name="selectEmp">';
 			$select.='<option value= "nothing">===SELECT===</option>';
 			while($rs=mysqli_fetch_array($sql)){
 			  $select.='<option value="'.$rs['empID'].'">'.$rs['empName'].'</option>';
@@ -36,7 +36,8 @@ include("createDB.php");;
 
 		echo $select;
 		?>
-        </p>
+		
+		</p>
         <p>
 		<label for="inputProjID" style="color: white">Project: <sup>*</sup></label>
 		<?php
@@ -44,7 +45,7 @@ include("createDB.php");;
 		
 		$sql=mysqli_query($link, "SELECT projID,projName FROM timeTrackingDB.project");
 		if(mysqli_num_rows($sql)){
-			$select= '<select name="select">';
+			$select= '<select name="selectProj">';
 			$select.='<option value= "nothing">===SELECT===</option>';
 			while($rs=mysqli_fetch_array($sql)){
 			  $select.='<option value="'.$rs['projID'].'">'.$rs['projName'].'</option>';
@@ -60,21 +61,24 @@ include("createDB.php");;
 		<!--Time Worked-->
 		<p>
             <label for="inputHoursWorked" style="color: white">Time Worked:<sup>*</sup></label>
-            <input class="numeric" type="text" name="timeWorked" id="inputHoursWorked">
+			<input class = "numeric" type = "text" name = "hrsWorked" id = "inputHoursWorked">
+			
 			<label for="inputHoursWorked" style="color: white"><sub>hours </sub></label>
-            <input class="numeric" type="text" name="timeWorked" id="inputHoursWorked">
-			<label for="inputHoursWorked" style="color: white"><sub>min </sub></label>
+			
+            <input class = "numeric" type = "text" name = "minsWorked" id = "inputMinsWorked">
+			
+			<label for="inputMinsWorked" style="color: white"><sub>mins </sub></label>
         </p>
 		
 		<!--Work Date-->
 		<p>
             <label for="inputWorkDate" style="color: white">Work Date:<sup>*</sup></label>
-            <input type="text" name="workDate" placeholder="yyyy/mm/dd" onkeyup="
+            <input type="text" name="workDate" placeholder="yyyy-mm-dd" onkeyup="
 				var v = this.value;
 				if (v.match(/^\d{4}$/) !== null) {
-					this.value = v + '/';
-				} else if (v.match(/^\d{4}\/\d{2}$/) !== null) {
-					this.value = v + '/';
+					this.value = v + '-';
+				} else if (v.match(/^\d{4}\-\d{2}$/) !== null) {
+					this.value = v + '-';
 				}"
 				maxlength="10"
 				id="inputWorkDate"

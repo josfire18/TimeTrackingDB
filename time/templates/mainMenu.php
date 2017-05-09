@@ -25,7 +25,6 @@ include("createDB.php");
 		</div>
 		<div style="padding: 10px">
 		<input type="button" value="Clock In" class="btn btn-success btn-sm" onclick="window.location.href='clockInProject.php'" />
-	
 		<br />
 		</div>
 		<div style="padding: 10px">
